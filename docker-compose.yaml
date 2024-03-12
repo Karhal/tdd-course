@@ -1,0 +1,24 @@
+version: '3'
+services:
+  composer:
+    image: composer:latest
+    environment:
+      - COMPOSER_CACHE_DIR=/app/var/cache/composer
+    volumes:
+      - .:/app
+    restart: never
+
+  php:
+    image: php:latest
+    restart: never
+    volumes:
+      - .:/app
+    working_dir: /app
+
+  phpunit:
+    image: php:latest
+    restart: never
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: vendor/bin/phpunit
